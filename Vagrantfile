@@ -1,22 +1,19 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# All Vagrant configuration is done below. The "2" in Vagrant.configure
-# configures the configuration version (we support older styles for
-# backwards compatibility). Please don't change it unless you know what
-# you're doing.
+# 1
 Vagrant.configure("2") do |config|
-  # The most common configuration options are documented and commented below.
-  # For a complete reference, please see the online documentation at
-  # https://docs.vagrantup.com.
  
-  # Every Vagrant development environment requires a box. You can search for
-  # boxes at https://vagrantcloud.com/search.
+  # 2 set OD for box
   config.vm.box = "ubuntu/bionic64"
+
+  # 3 set OS version 
   config.vm.box_version = "~> 20200304.0.0"
  
+  # 4 set network port 
   config.vm.network "forwarded_port", guest: 8000, host: 8000
- 
+
+  # 5 run scripts for runtime setup 
   config.vm.provision "shell", inline: <<-SHELL
     systemctl disable apt-daily.service
     systemctl disable apt-daily.timer
